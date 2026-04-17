@@ -6345,43 +6345,49 @@ window.addEventListener("load", () => {
 
  <!-- reception time -->
 <script>
-function updateEventTimes() {
+(function () {
 
-  const cards = document.querySelectorAll(
-    '[data-framer-name="Event Card - Desktop "], [data-framer-name="Event Card - Mobile"]'
-  );
+  function updateEventTimes() {
+    const cards = document.querySelectorAll(
+      '[data-framer-name="Event Card - Desktop "], [data-framer-name="Event Card - Mobile"]'
+    );
 
-  cards.forEach(card => {
+    cards.forEach(card => {
+      const title = card.querySelector('[data-framer-name="Event name"] p');
+      const time = card.querySelector('[data-framer-name="Time"] p');
 
-    const title = card.querySelector('[data-framer-name="Event name"] p');
-    const time = card.querySelector('[data-framer-name="Time"] p');
+      if (!title || !time) return;
 
-    if (!title || !time) return;
+      const event = title.textContent.trim().toLowerCase();
 
-    const event = title.textContent.trim().toLowerCase();
+      if (event === "muhurtham") {
+        time.textContent = "10:30AM - 10:45AM";
+      }
 
-    if (event === "muhurtham") {
-      time.textContent = "10:30AM - 10:45AM";
+      if (event === "reception") {
+        time.textContent = "11:30AM Onwards";
+      }
+    });
+  }
+
+  // Run after DOM ready
+  document.addEventListener("DOMContentLoaded", () => {
+    updateEventTimes();
+
+    // ✅ Safe MutationObserver check
+    if (typeof MutationObserver !== "undefined") {
+      const observer = new MutationObserver(() => {
+        updateEventTimes();
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
     }
-
-    if (event === "reception") {
-      time.textContent = "11:30AM Onwards";
-    }
-
   });
-}
 
-// run multiple times (Framer delay)
-setTimeout(updateEventTimes, 500);
-setTimeout(updateEventTimes, 1500);
-setTimeout(updateEventTimes, 3000);
-
-// 🔥 EXTRA (for mobile re-renders)
-const observer = new MutationObserver(updateEventTimes);
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+})();
 </script>
 
 <!-- countdown timer -->
