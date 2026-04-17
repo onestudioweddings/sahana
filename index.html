@@ -6374,33 +6374,59 @@ setTimeout(updateEventTimes, 3000);
 
 <!-- countdown timer -->
 <script>
-window.addEventListener("load", function () {
-  const el = document.querySelector('.framer-9irw90-container p');
+(function () {
+  const targetDate = new Date("May 7, 2026 10:30:00").getTime();
 
-  if (!el) return;
-
-  // show timer
-  el.style.visibility = "visible";
-
-  const target = new Date("May 7, 2026 10:30:00").getTime();
-
-  setInterval(() => {
-    const now = new Date().getTime();
-    const diff = target - now;
-
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff / (1000*60*60)) % 24);
-    const m = Math.floor((diff / (1000*60)) % 60);
+  function format(diff) {
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
     const s = Math.floor((diff / 1000) % 60);
 
-    el.textContent =
-      String(d).padStart(2,"0") + ":" +
-      String(h).padStart(2,"0") + ":" +
-      String(m).padStart(2,"0") + ":" +
-      String(s).padStart(2,"0");
-  }, 1000);
-});
+    return (
+      String(d).padStart(2, "0") + ":" +
+      String(h).padStart(2, "0") + ":" +
+      String(m).padStart(2, "0") + ":" +
+      String(s).padStart(2, "0")
+    );
+  }
+
+  function findAndStart() {
+    const allP = document.querySelectorAll("p");
+
+    for (const p of allP) {
+      if (p.textContent.trim().includes("00:00:00:00")) {
+
+        function update() {
+          const now = new Date().getTime();
+          const diff = targetDate - now;
+          p.textContent = format(diff > 0 ? diff : 0);
+        }
+
+        update();
+        setInterval(update, 1000);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  const observer = new MutationObserver(() => {
+    if (findAndStart()) {
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  // initial attempt
+  findAndStart();
+})();
 </script>
+
   <!-- End of bodyStart -->
 
   <div id="main"
