@@ -6344,7 +6344,50 @@ window.addEventListener("load", () => {
 </script>
 
  <!-- reception time -->
+<script>
+(function () {
 
+  function updateReceptionTime() {
+
+    document.querySelectorAll('[data-framer-name="Event name"] p')
+      .forEach(el => {
+
+        const event = el.innerText.trim().toLowerCase();
+
+        // 🎯 Only Reception
+        if (event === "reception") {
+
+          // find parent card (works for desktop + mobile)
+          const card = el.closest('[data-framer-name*="Event Card"]');
+
+          if (!card) return;
+
+          const time = card.querySelector('[data-framer-name="Time"] p');
+
+          if (time && time.innerText !== "11:30 AM") {
+            time.innerText = "11:30 AM";
+          }
+        }
+
+      });
+  }
+
+  // 🔁 Run multiple times (Framer loads late)
+  setTimeout(updateReceptionTime, 500);
+  setTimeout(updateReceptionTime, 1500);
+  setTimeout(updateReceptionTime, 3000);
+  setTimeout(updateReceptionTime, 5000);
+
+  // 🔥 Handle dynamic rendering (mobile especially)
+  const observer = new MutationObserver(updateReceptionTime);
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+})();
+</script>
 
  
 
