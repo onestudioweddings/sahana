@@ -6263,7 +6263,8 @@ window.addEventListener("load", () => {
         .replace(/Daughter of/g, '')
         .replace(/Friday, March 12th 2026/g, 'Thursday, 7 May 2026')
         .replace(/Friday, March 17th 2026/g, 'Thursday, 7 May 2026')        
-        .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Bengaluru, Karnataka')
+        // .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Bengaluru, Karnataka<br>')
+        .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Shankarapuram, Bengaluru, Karnataka'.replace(/,\s*/g, '\n'))
         .replace(/6pm Onwards/g, '10:30AM - 10:45AM')
         .replace(/You to join us in the wedding celebrations of/g, 'You to join us in the wedding of our daughter')
         .replace(/Parvathi & Shri K. Ramaswamy/g, '');
@@ -6359,7 +6360,7 @@ function updateEventTimes() {
       time.textContent = "10:30AM - 10:45AM";
     }
 
-    if (event === "Reception") {
+    if (event.toLowerCase() === "reception") {
       time.textContent = "11:30AM Onwards";
     }
   });
