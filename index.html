@@ -6346,30 +6346,42 @@ window.addEventListener("load", () => {
  <!-- reception time -->
 <script>
 function updateEventTimes() {
-  const cards = document.querySelectorAll('[data-framer-name="Event Card - Desktop "]');
+
+  const cards = document.querySelectorAll(
+    '[data-framer-name="Event Card - Desktop "], [data-framer-name="Event Card - Mobile"]'
+  );
 
   cards.forEach(card => {
+
     const title = card.querySelector('[data-framer-name="Event name"] p');
     const time = card.querySelector('[data-framer-name="Time"] p');
 
     if (!title || !time) return;
 
-    const event = title.textContent.trim();
+    const event = title.textContent.trim().toLowerCase();
 
-    if (event === "Muhurtham") {
+    if (event === "muhurtham") {
       time.textContent = "10:30AM - 10:45AM";
     }
 
-    if (event.toLowerCase() === "reception") {
+    if (event === "reception") {
       time.textContent = "11:30AM Onwards";
     }
+
   });
 }
 
-// run multiple times because Framer re-renders
+// run multiple times (Framer delay)
 setTimeout(updateEventTimes, 500);
 setTimeout(updateEventTimes, 1500);
 setTimeout(updateEventTimes, 3000);
+
+// 🔥 EXTRA (for mobile re-renders)
+const observer = new MutationObserver(updateEventTimes);
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
 </script>
 
 <!-- countdown timer -->
