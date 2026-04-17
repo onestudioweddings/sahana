@@ -6264,7 +6264,7 @@ window.addEventListener("load", () => {
         .replace(/Friday, March 12th 2026/g, 'Thursday, 7 May 2026')
         .replace(/Friday, March 17th 2026/g, 'Thursday, 7 May 2026')        
         // .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Bengaluru, Karnataka<br>')
-        .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Shankarapuram, Bengaluru, Karnataka'.replace(/,\s*/g, '\n'))
+        .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Shankarapuram, Bengaluru'.replace(/,\s*/g, '\n'))
         .replace(/6pm Onwards/g, '10:30AM - 10:45AM')
         .replace(/You to join us in the wedding celebrations of/g, 'You to join us in the wedding of our daughter')
         .replace(/Parvathi & Shri K. Ramaswamy/g, '');
@@ -6345,31 +6345,50 @@ window.addEventListener("load", () => {
 
  <!-- reception time -->
 <script>
-function updateEventTimes() {
-  const cards = document.querySelectorAll('[data-framer-name="Event Card - Desktop "]');
+(function () {
 
-  cards.forEach(card => {
-    const title = card.querySelector('[data-framer-name="Event name"] p');
-    const time = card.querySelector('[data-framer-name="Time"] p');
+  function updateEventTimes() {
 
-    if (!title || !time) return;
+    const cards = document.querySelectorAll('[data-framer-name*="Event Card"]');
 
-    const event = title.textContent.trim();
+    cards.forEach(card => {
 
-    if (event === "Muhurtham") {
-      time.textContent = "10:30AM - 10:45AM";
-    }
+      const titleEl = card.querySelector('[data-framer-name="Event name"]');
+      const timeEl = card.querySelector('[data-framer-name="Time"]');
 
-    if (event.toLowerCase() === "reception") {
-      time.textContent = "11:30AM Onwards";
-    }
+      if (!titleEl || !timeEl) return;
+
+      const event = titleEl.innerText.trim().toLowerCase();
+
+      // 🔥 DEBUG (optional)
+      // console.log("Event:", event);
+
+      if (event.includes("muhurtham")) {
+        timeEl.innerText = "10:30AM - 10:45AM";
+      }
+
+      if (event.includes("reception")) {
+        timeEl.innerText = "11:30AM Onwards";
+      }
+
+    });
+  }
+
+  // 🔥 Run multiple times (important)
+  setTimeout(updateEventTimes, 500);
+  setTimeout(updateEventTimes, 1500);
+  setTimeout(updateEventTimes, 3000);
+  setTimeout(updateEventTimes, 5000);
+
+  // 🔥 Handle dynamic rendering
+  const observer = new MutationObserver(updateEventTimes);
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
   });
-}
 
-// run multiple times because Framer re-renders
-setTimeout(updateEventTimes, 500);
-setTimeout(updateEventTimes, 1500);
-setTimeout(updateEventTimes, 3000);
+})();
 </script>
 
 <!-- countdown timer -->
