@@ -63,11 +63,11 @@ document.onkeydown = function(e) {
   <!-- End of headStart -->
   <meta name="viewport" content="width=device-width">
   <meta name="generator" content="Framer f509301">
-  <title>Wedding Invitation - Karthik & Viashu</title>
+  <title>Wedding Invitation - Sahana & Kishore</title>
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Wedding Invitation - Karthik & Viashu">
+  <meta property="og:title" content="Wedding Invitation - Sahana & Kishore">
   <meta property="og:description"
     content="Come join our wedding celebration!">
   <meta property="og:image" content="#featureimage">
@@ -6070,7 +6070,7 @@ window.addEventListener("load", () => {
   document.querySelectorAll(
     'a[href*="missingpiecevites.com"]'
   ).forEach(link => {
-    link.href = "https://www.google.com";
+    link.href = "https://maps.app.goo.gl/TKjpbkcSkmxdY41K6";
   });
 });
 </script>
@@ -6223,7 +6223,7 @@ document.addEventListener("touchstart", startMusic);
 <script>
 window.addEventListener("load", () => {
 
-  document.title = "Wedding Invitation - Karthik & Vaishu";
+  document.title = "Wedding Invitation - Sahana & Kishore";
 
   const setMeta = (property, value) => {
     let tag = document.querySelector(`meta[property="${property}"]`);
@@ -6235,9 +6235,9 @@ window.addEventListener("load", () => {
     tag.setAttribute("content", value);
   };
 
-  setMeta("og:title", "WWedding Invitation - Karthik & Vaishu");
+  setMeta("og:title", "WWedding Invitation - Sahana & Kishore");
   setMeta("og:description", "Come join our wedding celebration!");
-  setMeta("og:image", "https://karthikwedsvaishu.vercel.app/1-img.jpg");
+  setMeta("og:image", "https://sahanawedskishore.vercel.app/1-img.jpg");
 
 });
 </script>
@@ -6250,11 +6250,23 @@ window.addEventListener("load", () => {
   const replaceText = (node) => {
     if (node.nodeType === 3) { // text node
       node.nodeValue = node.nodeValue
-        .replace(/VISHU/g, 'KARTHIK')
-        .replace(/Vishu/g, 'Karthik')
-        .replace(/KAVYA/g, 'VAISHU')
-        .replace(/Kavya/g, 'Vaishu')
-        .replace(/Parvathi Ammal/g, 'Indraja Ammal');
+        .replace(/VISHU/g, 'SAHANA')
+        .replace(/Vishu/g, 'Sahana')
+        .replace(/KAVYA/g, 'KISHORE')
+        .replace(/Kavya/g, 'Kishore')
+        .replace(/With the heavenly blessings of/g, ' ')
+        .replace(/Smt./g, ' ')
+        .replace(/& Shri Krishnan Iyer/g, ' ')
+        .replace(/Parvathi Ammal/g, '')
+        .replace(/Kamakshi Ammal/g, 'Smt. S. Rukmini')
+        .replace(/Shri Srinivasan Iyer/g, 'Sri S. Ashwatha Narayana')
+        .replace(/Daughter of/g, '')
+        .replace(/Friday, March 12th 2026/g, 'Thursday, 7 May 2026')
+        .replace(/Friday, March 17th 2026/g, 'Thursday, 7 May 2026')        
+        .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Mahakavi Rd, Chikkanna Garden, Shankarapuram, Bengaluru, Karnataka 560004')
+        .replace(/6pm Onwards/g, '10:30AM - 10:45AM')
+        .replace(/You to join us in the wedding celebrations of/g, 'You to join us in the wedding of our daughter')
+        .replace(/Parvathi & Shri K. Ramaswamy/g, '');
     }
   };
 
@@ -6287,6 +6299,7 @@ window.addEventListener("load", () => {
 
 
 
+
   // Also run once immediately
   document.addEventListener("DOMContentLoaded", () => {
     const walker = document.createTreeWalker(
@@ -6303,6 +6316,61 @@ window.addEventListener("load", () => {
   });
 })();
 </script>
+
+
+ <!-- hide mahendi -->
+
+  <script>
+  const eventsToHide = ["Mehendi", "Haldi", "Sangeet", "Engagement"]; // 👈 add anything here
+
+  const observer = new MutationObserver(() => {
+    const cards = document.querySelectorAll(".framer-1jdcvq6");
+
+    cards.forEach(card => {
+      const text = card.innerText;
+
+      if (eventsToHide.some(event => text.includes(event))) {
+        const parent = card.closest('[data-framer-name^="Card"]');
+        if (parent) parent.style.display = "none";
+      }
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+</script>
+
+ <!-- reception time -->
+<script>
+function updateEventTimes() {
+  const cards = document.querySelectorAll('[data-framer-name="Event Card - Desktop "]');
+
+  cards.forEach(card => {
+    const title = card.querySelector('[data-framer-name="Event name"] p');
+    const time = card.querySelector('[data-framer-name="Time"] p');
+
+    if (!title || !time) return;
+
+    const event = title.textContent.trim();
+
+    if (event === "Muhurtham") {
+      time.textContent = "10:30AM - 10:45AM";
+    }
+
+    if (event === "Reception") {
+      time.textContent = "11:30AM Onwards";
+    }
+  });
+}
+
+// run multiple times because Framer re-renders
+setTimeout(updateEventTimes, 500);
+setTimeout(updateEventTimes, 1500);
+setTimeout(updateEventTimes, 3000);
+</script>
+
 
   <!-- End of bodyStart -->
 
@@ -6980,15 +7048,15 @@ window.addEventListener("load", () => {
                   <div class="ssr-variant hidden-1ix6lmh">
                     <div class="framer-FqwEu framer-175wcop framer-v-175wcop" data-framer-name="Desktop"
                       style="width:100%">
-                      <div class="framer-3xglzy"
+                      <!-- <div class="framer-3xglzy"
                         data-framer-name="With the heavenly blessings of Smt. Sita Devi &amp; Sm. Om Puri"
                         data-framer-component-type="RichTextContainer"
                         style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
                         <p class="framer-text"
                           style="--font-selector:R0Y7Q29ybW9yYW50IFVwcmlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Cormorant Upright&quot;, &quot;Cormorant Upright Placeholder&quot;, serif;--framer-font-size:30px;--framer-letter-spacing:-0.03em;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(243, 236, 186))">
                           With the heavenly blessings of </p>
-                      </div>
-                      <div class="framer-19djrwi"
+                      </div> -->
+                      <!-- <div class="framer-19djrwi"
                         data-framer-name="With the heavenly blessings of Smt. Sita Devi &amp; Sm. Om Puri"
                         data-framer-component-type="RichTextContainer"
                         style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
@@ -6996,7 +7064,7 @@ window.addEventListener("load", () => {
                           style="--font-selector:R0Y7Q29ybW9yYW50IFVwcmlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Cormorant Upright&quot;, &quot;Cormorant Upright Placeholder&quot;, serif;--framer-font-size:30px;--framer-letter-spacing:-0.03em;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(243, 236, 186))">
                           Smt. Parvathi Ammal &amp; Shri Krishnan Iyer
                         </p>
-                      </div>
+                      </div> -->
                       <div class="framer-1k1fru6" data-framer-name="and" data-framer-component-type="RichTextContainer"
                         style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
                         <p class="framer-text"
@@ -7015,7 +7083,7 @@ window.addEventListener("load", () => {
                   <div class="ssr-variant hidden-1y2hfxk">
                     <div class="framer-FqwEu framer-175wcop framer-v-1ijgijq" data-framer-name="Tablet"
                       style="width:100%">
-                      <div class="framer-3xglzy"
+                      <!-- <div class="framer-3xglzy"
                         data-framer-name="With the heavenly blessings of Smt. Sita Devi &amp; Sm. Om Puri"
                         data-framer-component-type="RichTextContainer"
                         style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
@@ -7031,7 +7099,7 @@ window.addEventListener("load", () => {
                           style="--font-selector:R0Y7Q29ybW9yYW50IFVwcmlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Cormorant Upright&quot;, &quot;Cormorant Upright Placeholder&quot;, serif;--framer-font-size:30px;--framer-letter-spacing:-0.03em;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(243, 236, 186))">
                           Smt. Parvathi Ammal &amp; Shri Krishnan Iyer
                         </p>
-                      </div>
+                      </div> -->
                       <div class="framer-1k1fru6" data-framer-name="and" data-framer-component-type="RichTextContainer"
                         style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
                         <p class="framer-text"
@@ -7059,7 +7127,7 @@ window.addEventListener("load", () => {
                 <div class="framer-14qht25-container"><!--$-->
                   <div class="framer-ij9jz framer-ky7q6d framer-v-ky7q6d" data-framer-name="Desktop"
                     style="height:100%;width:100%">
-                    <div class="framer-1sgfkcc" data-framer-name="You to join us in the wedding celebrations of"
+                    <div class="framer-1sgfkcc" data-framer-name="You to join us in the wedding celebrations of our daughter"
                       data-framer-component-type="RichTextContainer"
                       style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:translate(-50%, -50%)">
                       <p class="framer-text"
@@ -8212,7 +8280,7 @@ window.addEventListener("load", () => {
                                 style="--extracted-r6o4lv:rgb(69, 160, 134);--framer-paragraph-spacing:0px;transform:none">
                                 <p class="framer-text"
                                   style="--font-selector:R0Y7Q29ybW9yYW50LXJlZ3VsYXI=;--framer-font-family:&quot;Cormorant&quot;, &quot;Cormorant Placeholder&quot;, serif;--framer-font-size:14px;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(69, 160, 134))">
-                                  6pm Onwards</p>
+                                  10pm Onwards</p>
                               </div>
                             </div>
                             <div class="framer-udt5ln" data-framer-name="Location">
@@ -8309,7 +8377,7 @@ window.addEventListener("load", () => {
                                 style="--extracted-r6o4lv:rgb(69, 160, 134);--framer-paragraph-spacing:0px;transform:none">
                                 <p class="framer-text"
                                   style="--font-selector:R0Y7Q29ybW9yYW50LXJlZ3VsYXI=;--framer-font-family:&quot;Cormorant&quot;, &quot;Cormorant Placeholder&quot;, serif;--framer-font-size:14px;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(69, 160, 134))">
-                                  6pm Onwards</p>
+                                  10pm Onwards</p>
                               </div>
                             </div>
                             <div class="framer-udt5ln" data-framer-name="Location">
@@ -8752,7 +8820,7 @@ window.addEventListener("load", () => {
                 </div>
                 <div class="framer-19f1j5h-container"><!--$-->
                   <div class="framer-FqwEu framer-175wcop framer-v-kjbxou" data-framer-name="Phone" style="width:100%">
-                    <div class="framer-3xglzy"
+                    <!-- <div class="framer-3xglzy"
                       data-framer-name="With the heavenly blessings of Smt. Sita Devi &amp; Sm. Om Puri"
                       data-framer-component-type="RichTextContainer"
                       style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
@@ -8768,7 +8836,7 @@ window.addEventListener("load", () => {
                         style="--font-selector:R0Y7Q29ybW9yYW50IFVwcmlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Cormorant Upright&quot;, &quot;Cormorant Upright Placeholder&quot;, serif;--framer-font-size:20px;--framer-letter-spacing:-0.03em;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(243, 236, 186))">
                         Smt. Parvathi Ammal &amp; Shri Krishnan Iyer
                       </p>
-                    </div>
+                    </div> -->
                     <div class="framer-1k1fru6" data-framer-name="and" data-framer-component-type="RichTextContainer"
                       style="--extracted-r6o4lv:rgb(243, 236, 186);--framer-paragraph-spacing:0px;transform:none">
                       <p class="framer-text"
@@ -9423,7 +9491,7 @@ window.addEventListener("load", () => {
                               style="--extracted-r6o4lv:rgb(69, 160, 134);--framer-paragraph-spacing:0px;transform:none">
                               <p class="framer-text"
                                 style="--font-selector:R0Y7Q29ybW9yYW50LXJlZ3VsYXI=;--framer-font-family:&quot;Cormorant&quot;, &quot;Cormorant Placeholder&quot;, serif;--framer-font-size:17px;--framer-line-height:100%;--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, rgb(69, 160, 134))">
-                                6pm Onwards</p>
+                                10pm Onwards</p>
                             </div>
                           </div>
                           <div class="framer-udt5ln" data-framer-name="Location">
