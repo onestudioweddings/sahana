@@ -6356,6 +6356,18 @@ window.addEventListener("load", () => {
 </script>
 
 
+<!-- font color -->
+
+<style>
+/* Change Date, Venue, Time color */
+[data-framer-name="Date and day"] p,
+[data-framer-name="Venue"] p,
+[data-framer-name="Time"] p {
+  color: #CF2F2A !important;
+}
+</style>
+
+
 <!-- hashtag -->
 
 <script>
@@ -6457,6 +6469,7 @@ window.addEventListener("load", () => {
 <!-- countdown timer -->
 <script>
 (function () {
+
   const targetDate = new Date("May 7, 2026 10:30:00").getTime();
 
   function format(diff) {
@@ -6473,39 +6486,47 @@ window.addEventListener("load", () => {
     );
   }
 
-  function findAndStart() {
-    const allP = document.querySelectorAll("p");
+  function startCounter(el) {
 
-    for (const p of allP) {
-      if (p.textContent.trim().includes("00:00:00:00")) {
+    if (el.dataset.running) return; // prevent duplicate
+    el.dataset.running = "true";
 
-        function update() {
-          const now = new Date().getTime();
-          const diff = targetDate - now;
-          p.textContent = format(diff > 0 ? diff : 0);
-        }
-
-        update();
-        setInterval(update, 1000);
-        return true;
-      }
+    function update() {
+      const now = Date.now();
+      const diff = targetDate - now;
+      el.innerText = format(diff > 0 ? diff : 0);
     }
-    return false;
+
+    update();
+    setInterval(update, 1000);
   }
 
-  const observer = new MutationObserver(() => {
-    if (findAndStart()) {
-      observer.disconnect();
-    }
-  });
+  function findCounter() {
+    document.querySelectorAll("p").forEach(p => {
+
+      const text = p.innerText.trim();
+
+      // 🔥 flexible match
+      if (/^\d{2}:\d{2}:\d{2}:\d{2}$/.test(text) || text.includes("00:00")) {
+        startCounter(p);
+      }
+
+    });
+  }
+
+  // run multiple times
+  setTimeout(findCounter, 500);
+  setTimeout(findCounter, 1500);
+  setTimeout(findCounter, 3000);
+
+  // observe dynamic rendering
+  const observer = new MutationObserver(findCounter);
 
   observer.observe(document.body, {
     childList: true,
     subtree: true
   });
 
-  // initial attempt
-  findAndStart();
 })();
 </script>
 
