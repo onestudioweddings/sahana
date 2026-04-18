@@ -6268,6 +6268,7 @@ window.addEventListener("load", () => {
         .replace(/6pm Onwards/g, '10:30AM - 10:45AM')
         .replace(/You to join us in the wedding celebrations of/g, 'You to join us in the wedding of our daughter')
         .replace(/Parvathi & Shri K. Ramaswamy/g, '')
+        .replace(/STAFF/g, 'InPErsona')
         .replace(/28 degrees. 34 degrees/g, '');
     }
   };
@@ -6319,15 +6320,46 @@ window.addEventListener("load", () => {
 })();
 </script>
 
- <!-- staff parking -->
+ /* Hide Staff & Parking sections */
 
 <style>
-/* Hide Staff & Parking sections */
-[data-framer-name="Staff"],
+
+/* [data-framer-name="Staff"], */
 [data-framer-name="Parking"] {
   display: none !important;
 }
-</style>
+</style> 
+
+
+<script>
+(function () {
+
+  function updateStaffSection() {
+
+    const section = document.querySelector('[data-framer-name="Staff"]');
+    if (!section) return;
+
+    // 🔹 Change title
+    const title = section.querySelector('[data-framer-name="Hashtag"] p');
+    if (title && title.innerText.trim() === "Staff") {
+      title.innerText = "In Person";
+    }
+
+    // 🔹 Change description
+    const desc = section.querySelector('.framer-1ilsgfh p');
+    if (desc) {
+      desc.innerText = "We would be delighted if you could join us in person and bless us on our special day.";
+    }
+
+  }
+
+  // Run multiple times (Framer delay)
+  setTimeout(updateStaffSection, 500);
+  setTimeout(updateStaffSection, 1500);
+  setTimeout(updateStaffSection, 3000);
+
+})();
+</script>
 
 
 <!-- degrees -->
