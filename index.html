@@ -6267,7 +6267,8 @@ window.addEventListener("load", () => {
         .replace(/Rambagh, Jaipur/g, 'Shri Maheshwari Devi Temple, Shankarapuram, Bengaluru'.replace(/,\s*/g, '\n'))
         .replace(/6pm Onwards/g, '10:30AM - 10:45AM')
         .replace(/You to join us in the wedding celebrations of/g, 'You to join us in the wedding of our daughter')
-        .replace(/Parvathi & Shri K. Ramaswamy/g, '');
+        .replace(/Parvathi & Shri K. Ramaswamy/g, '')
+        .replace(/28 degrees. 34 degrees/g, '');
     }
   };
 
@@ -6315,6 +6316,68 @@ window.addEventListener("load", () => {
       replaceText(node);
     }
   });
+})();
+</script>
+
+ <!-- staff parking -->
+
+<style>
+/* Hide Staff & Parking sections */
+[data-framer-name="Staff"],
+[data-framer-name="Parking"] {
+  display: none !important;
+}
+</style>
+
+
+<!-- degrees -->
+<script>
+(function () {
+
+  function updateWeatherTemp() {
+
+    document.querySelectorAll('[data-framer-name="Weather"] p')
+      .forEach(el => {
+
+        if (el.innerText.includes("28 degrees")) {
+          el.innerText = el.innerText.replace("28 degrees", "34 degrees");
+        }
+
+      });
+  }
+  
+
+  // Run multiple times (Framer delay)
+  setTimeout(updateWeatherTemp, 500);
+  setTimeout(updateWeatherTemp, 1500);
+  setTimeout(updateWeatherTemp, 3000);
+
+})();
+</script>
+
+
+<!-- hashtag -->
+
+<script>
+(function () {
+
+  function updateHashtag() {
+
+    document.querySelectorAll('[data-framer-name="Hashtag"] p')
+      .forEach(el => {
+
+        if (el.innerText.includes("#abkan")) {
+          el.innerText = el.innerText.replace("#abkan", "#saki");
+        }
+
+      });
+  }
+
+  // Run multiple times (Framer delay)
+  setTimeout(updateHashtag, 500);
+  setTimeout(updateHashtag, 1500);
+  setTimeout(updateHashtag, 3000);
+
 })();
 </script>
 
